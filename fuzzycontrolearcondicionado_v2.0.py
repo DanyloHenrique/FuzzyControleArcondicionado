@@ -69,20 +69,16 @@ rule3 = crtl.Rule(temperatura['amena']
                   & (umidade['media'] | umidade['alta'])
                   & (tamanho_comodo['grande'])
                   , temperatura_arcondicionado['media'])
-# rule3 = crtl.Rule(temperatura['amena'] & umidade['alta'], temperatura_arcondicionado['media'])
 
 
 #temperatura do arcondicionado baixa
 rule4 = crtl.Rule((temperatura['quente'] | temperatura['amena'])
                   & (umidade['alta'] | umidade['media']),
                   temperatura_arcondicionado['baixa'])
-# rule5 = crtl.Rule(temperatura['quente'] & umidade['media'], temperatura_arcondicionado['alta'])
-# rule6 = crtl.Rule(temperatura['quente'], temperatura_arcondicionado['alta'])
-# rule7 = crtl.Rule(umidade['alta'], temperatura_arcondicionado['alta'])
 
 
 #simulação
-temperatura_arcondicionado_ctrl = crtl.ControlSystem([rule1, rule2])
+temperatura_arcondicionado_ctrl = crtl.ControlSystem([rule1, rule2, rule3, rule4])
 temperatura_arcondicionado_simulador = crtl.ControlSystemSimulation(temperatura_arcondicionado_ctrl)
 # Método de defuzzificação alterado para 'mom' (Maximum of Maximum)
 temperatura_arcondicionado.defuzzify_method = 'mom'
