@@ -72,7 +72,7 @@ rule3 = crtl.Rule(temperatura['amena']
 
 
 #temperatura do arcondicionado baixa
-rule4 = crtl.Rule((temperatura['quente'] | temperatura['amena'])
+rule4 = crtl.Rule((temperatura['quente']
                   & (umidade['alta'] | umidade['media']),
                   temperatura_arcondicionado['baixa'])
 
